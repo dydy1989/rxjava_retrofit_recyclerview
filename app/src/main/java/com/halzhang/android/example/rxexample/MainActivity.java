@@ -1,32 +1,20 @@
 package com.halzhang.android.example.rxexample;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.view.ViewEvent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -105,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
         mData = new ArrayList<ArticlesData.Aritcle>();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mAdapter = new NewsAdapter(mData));
+        mRecyclerView.setAdapter(mAdapter = new NewsAdapter(mData,this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 

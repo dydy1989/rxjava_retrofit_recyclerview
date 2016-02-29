@@ -1,11 +1,14 @@
 package com.halzhang.android.example.rxexample;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -14,8 +17,10 @@ import java.util.List;
  */
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<ArticlesData.Aritcle> mArticles;
-    public NewsAdapter(List<ArticlesData.Aritcle> data){
+    private Context mContext;
+    public NewsAdapter(List<ArticlesData.Aritcle> data,Context context){
         this.mArticles =data;
+        this.mContext = context;
     }
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,6 +34,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.title.setText(mArticles.get(position).title);
+        Glide.with(mContext)
+                .load(mArticles.get(position).imageUrl)
+                .crossFade()
+                .into(holder.imageView);
     }
 
 
